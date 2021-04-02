@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/parentPanel"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@android:color/transparent"
+              android:minWidth="@dimen/wsdk_alert_dialog_min_width"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/wsdk_alert_dialog_frame_margin"
+              android:paddingLeft="@dimen/wsdk_alert_dialog_frame_margin"
+              android:paddingRight="@dimen/wsdk_alert_dialog_frame_margin"
+              android:paddingTop="@dimen/wsdk_alert_dialog_frame_margin">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:id="@+id/topPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/wsdk_alert_dialog_title_bg"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/wsdk_alert_dialog_title_margin_left"
+                android:paddingRight="@dimen/wsdk_alert_dialog_title_margin_right">
+
+            <ImageView
+                    android:id="@+id/alertIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone"/>
+
+            <TextView
+                    android:id="@+id/title_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="left|center_vertical"
+                    android:minHeight="@dimen/wsdk_alert_dialog_title_height"
+                    android:singleLine="true"
+                    android:text="标题"
+                    android:visibility="gone"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/wsdk_alert_dialog_title_textsize"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/contentPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/wsdk_alert_dialog_message_bg"
+                android:gravity="center"
+                android:minHeight="@dimen/wsdk_alert_dialog_message_height"
+                android:orientation="vertical">
+
+            <ScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false">
+
+                <TextView
+                        android:id="@+id/content_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:paddingBottom="@dimen/wsdk_alert_dialog_message_margin_bottom"
+                        android:paddingLeft="@dimen/wsdk_alert_dialog_message_margin_left"
+                        android:paddingRight="@dimen/wsdk_alert_dialog_message_margin_right"
+                        android:paddingTop="@dimen/wsdk_alert_dialog_message_margin_top"
+                        android:text="对话框测试内容"
+                        android:textColor="#666666"
+                        android:textSize="@dimen/wsdk_alert_dialog_message_textsize"/>
+            </ScrollView>
+        </LinearLayout>
+
+        <RelativeLayout
+                android:id="@+id/customPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/wsdk_alert_dialog_message_bg"
+                android:gravity="center|center_vertical"
+                android:minHeight="@dimen/wsdk_alert_dialog_message_height"
+                android:visibility="gone"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp">
+        </RelativeLayout>
+
+        <LinearLayout
+                android:id="@+id/buttonPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <LinearLayout
+                    android:id="@+id/left_div"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="gone"/>
+
+            <Button
+                    android:id="@+id/first_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/wsdk_alert_dialog_leftbutton"
+                    android:minHeight="@dimen/wsdk_alert_dialog_button_height"
+                    android:singleLine="true"
+                    android:textColor="@drawable/wsdk_alertdialog_button_text_color"
+                    android:textSize="@dimen/wsdk_alert_dialog_button_textsize"/>
+
+            <Button
+                    android:id="@+id/second_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/wsdk_alert_dialog_rightbutton"
+                    android:minHeight="@dimen/wsdk_alert_dialog_button_height"
+                    android:singleLine="true"
+                    android:textColor="@drawable/wsdk_alertdialog_button_text_color"
+                    android:textSize="@dimen/wsdk_alert_dialog_button_textsize"/>
+            <LinearLayout
+                    android:id="@+id/right_div"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff" >
+
+    <ImageView
+            android:id="@+id/divider_line0"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="#DFDFDF" />
+
+    <RelativeLayout
+            android:id="@+id/sound_switch_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_line0"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="语音播报"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+        <CheckBox
+                android:id="@+id/sound_check"
+                android:layout_width="52dp"
+                android:layout_height="31dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:button="@drawable/transparent"
+                android:background="@drawable/wsdk_checkbox_selector"
+                android:checked="true" />
+
+    </RelativeLayout>
+
+    <ImageView
+            android:id="@+id/divider_line1"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/sound_switch_layout"
+            android:background="#DFDFDF" />
+
+    <RelativeLayout
+            android:id="@+id/pano_switch_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_line1"
+            android:visibility="visible"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="全景参照"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+        <CheckBox
+                android:id="@+id/pano_check"
+                android:layout_width="52dp"
+                android:layout_height="31dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:button="@drawable/transparent"
+                android:background="@drawable/wsdk_checkbox_selector"
+                android:checked="true" />
+    </RelativeLayout>
+
+    <ImageView
+            android:id="@+id/divider_line2"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/pano_switch_layout"
+            android:background="#DFDFDF" />
+
+    <RelativeLayout
+            android:id="@+id/treeD_switch_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_line2"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="3D视图"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+        <CheckBox
+                android:id="@+id/threeD_check"
+                android:layout_width="52dp"
+                android:layout_height="31dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:button="@drawable/transparent"
+                android:background="@drawable/wsdk_checkbox_selector"
+                android:checked="true" />
+    </RelativeLayout>
+
+    <ImageView
+            android:id="@+id/divider_line3"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/treeD_switch_layout"
+            android:background="#DFDFDF" />
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/divider_line3" >
+
+        <Button
+                android:id="@+id/switch_hide_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="0dp"
+                android:background="#FFFFFF"
+                android:text="关闭"
+                android:textColor="#2B81FF"
+                android:textSize="20dp" />
+        >
+    </RelativeLayout>
+
+</RelativeLayout>

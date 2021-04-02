@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ar_pop_content"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/ar_end_focus_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/wsdk_roundcorner_black_bg"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/end_title"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="0dp"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/wsdk_end_icon" />
+
+            <ImageView
+                android:id="@+id/divide_line"
+                android:layout_toRightOf="@id/end_title"
+                android:layout_marginRight="9dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#3cffffff"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/divide_line"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ar_end_poi_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="10dp"
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#ffffff"
+                    android:textSize="14dp" />
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginRight="5dp">
+
+                    <TextView
+                        android:id="@+id/ar_end_poi_floor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="1F"
+                        android:textColor="#ffffff"
+                        android:textSize="12dp"/>
+
+                    <ImageView
+                        android:id="@+id/floor_divide_line"
+                        android:layout_width="1px"
+                        android:layout_height="10dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="#1f304a" />
+
+                    <TextView
+                        android:id="@+id/ar_end_poi_dis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text=""
+                        android:textColor="#ffffff"
+                        android:textSize="12dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ar_end_nofoucus_layout"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/ar_end_left_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="-2dp"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/wsdk_ar_end_left_arrow"
+                android:visibility="gone" />
+
+            <ImageView
+                android:layout_toRightOf="@+id/nofocus_icon"
+                android:id="@+id/ar_end_right_arrow"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-2dp"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/wsdk_ar_end_right_arrow"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/nofocus_icon"
+                android:layout_toRightOf="@id/ar_end_left_arrow"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="0dp"
+                android:layout_marginLeft="0dp"
+                android:src="@drawable/wsdk_end_far_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </FrameLayout>
+
+</RelativeLayout>

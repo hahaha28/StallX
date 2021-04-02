@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bike_navi_ui_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--  <RelativeLayout
+              android:id="@+id/assist_info_bar"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentTop="true"
+              android:layout_marginLeft="10dp"
+              android:layout_marginTop="20dp"
+              android:background="#00000000">
+
+          <com.baidu.bikenavi.widget.PickerView
+                  android:id="@+id/picker_view"
+                  android:layout_width="62dp"
+                  android:layout_height="110dp"
+                  android:layout_below="@+id/chart_outer_container_layout"
+                  android:layout_centerHorizontal="true"
+                  android:background="@drawable/wsdk_assist_bar_default_bg"/>
+
+          <RelativeLayout
+                  android:id="@+id/chart_outer_container_layout"
+                  android:layout_width="82dp"
+                  android:layout_height="82dp"
+                  android:layout_alignParentTop="true"
+                  android:layout_marginBottom="-20dp"
+                  android:background="@drawable/wsdk_assist_chart_bg">
+
+              <RelativeLayout
+                      android:id="@+id/chart_container_layout"
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:layout_centerInParent="true"
+                      >
+
+                  <com.baidu.bikenavi.widget.MeterChart
+                          android:id="@+id/meter_chart"
+                          android:layout_width="fill_parent"
+                          android:layout_height="fill_parent"
+                          android:layout_centerInParent="true"
+                          android:visibility="gone"/>
+
+                  <com.baidu.bikenavi.widget.SpeedChart
+                          android:id="@+id/speed_chart"
+                          android:layout_width="fill_parent"
+                          android:layout_height="fill_parent"
+                          android:layout_centerInParent="true"
+                          android:visibility="gone"/>
+
+                  <com.baidu.bikenavi.widget.TimeChart
+                          android:id="@+id/time_chart"
+                          android:layout_width="fill_parent"
+                          android:layout_height="fill_parent"
+                          android:layout_centerInParent="true"
+                          android:visibility="gone"/>
+
+              </RelativeLayout>
+          </RelativeLayout>
+
+      </RelativeLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/rl_bike_top_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:id="@+id/gps_weak_layout"
+            android:layout_width="216dp"
+            android:layout_height="88dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:background="@drawable/wsdk_gps_weak_tips"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_gps_weak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="5dp"
+                android:text="GPS信号弱"
+                android:textColor="#ff6e42"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_gps_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="请骑行到开阔地带"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            android:background="@drawable/wsdk_guidance_circle_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/guidance_icon"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/bn_start_blue" />
+
+            <TextView
+                android:id="@+id/guidance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text=""
+                android:textColor="#ffffff"
+                android:visibility="visible" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/speed_layout"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/bikenavi_btn_location"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/wsdk_assist_chart_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/speed_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="0"
+            android:textColor="#333333"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_speed_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="km/h"
+            android:textColor="#333333"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/bikenavi_btn_location"
+        android:layout_width="48dp"
+        android:layout_height="47dp"
+        android:layout_above="@+id/bikenav_bottom_bar_layout"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/wsdk_drawable_bike_btn_bg_selector"
+        android:clickable="true"
+        android:gravity="center"
+        android:scaleType="centerInside"
+        android:src="@drawable/wsdk_drawable_bikenavi_location" />
+
+    <RelativeLayout
+        android:id="@+id/bnav_rg_map_scale_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bikenav_bottom_bar_layout"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@id/bikenavi_btn_location">
+
+        <TextView
+            android:id="@+id/bnav_rg_scale_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/bnav_rg_scale_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="7dp"
+            android:layout_below="@id/bnav_rg_scale_title"
+            android:background="@drawable/wsdk_drawable_rg_ic_scale_indicator"
+            android:paddingTop="-5dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <com.baidu.platform.comapi.bikenavi.widget.CustomScrollView
+        android:id="@+id/vw_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bikenav_bottom_bar_layout"
+        android:fillViewport="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/bikenav_bottom_bar_layout"
+        android:background="#d8d9da" />
+
+    <RelativeLayout
+        android:id="@+id/bikenav_bottom_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/bikenavi_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/wsdk_drawable_rg_ic_quit_guidance" />
+
+        <RelativeLayout
+            android:id="@+id/bikenavi_btn_voice_layout"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:paddingRight="10dp">
+
+            <ImageButton
+                android:id="@+id/bikenavi_btn_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/bikenavi_btn_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bikenavi_btn_lookover"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="3dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="查看全览"
+                android:textColor="#ff3385ff"
+                android:textSize="16dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/bikenavi_overview_remain_info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clickable="false"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#333333"
+                android:textSize="12dp"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

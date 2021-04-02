@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bnav_rg_ui_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/indoor_bar_container"
+        android:layout_width="42dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="7dp"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <com.baidu.platform.comapi.walknavi.segmentbrowse.widget.TestScaleView
+        android:id="@+id/remain_scaleview"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"></com.baidu.platform.comapi.walknavi.segmentbrowse.widget.TestScaleView>
+
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="133dp"
+        android:layout_below="@id/remain_scaleview"
+        android:background="@drawable/wsdk_guide_bar_bg">
+
+        <ImageView
+            android:id="@+id/guidance_icon"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp" />
+
+        <LinearLayout
+            android:id="@+id/gps_weak_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_toRightOf="@id/guidance_icon"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_gps_weak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="GPS信号弱"
+                android:textColor="#ff3385ff"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_gps_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请步行到开阔地带"
+                android:textColor="#ff3385ff"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@id/guidance_icon"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/remain_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text=""
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/guidance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""
+                android:textColor="#fff"
+                android:textSize="22sp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.baidu.platform.comapi.walknavi.segmentbrowse.widget.TestFrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="fill_parent"
+        android:layout_height="95dp"
+        android:layout_below="@id/remain_scaleview"
+        android:background="#00ffffff"
+        android:visibility="gone">
+
+        <com.baidu.platform.comapi.walknavi.segmentbrowse.widget.TestLinearLayout
+            android:id="@+id/textviewone"
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:orientation="horizontal" />
+
+        <com.baidu.platform.comapi.walknavi.segmentbrowse.widget.TestLinearLayout
+            android:id="@+id/textviewtwo"
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:gravity="top"
+            android:orientation="horizontal" />
+
+    </com.baidu.platform.comapi.walknavi.segmentbrowse.widget.TestFrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/ar_voice_btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_below="@id/remain_scaleview"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:background="#d8d9da" />
+
+            <ImageView
+                android:id="@+id/ar_voice_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!--AR NPC 3D模型的容器View-->
+
+    <!-- 退出按钮 -->
+
+    <FrameLayout
+        android:id="@+id/user_npc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="160dp"
+        android:visibility="visible"></FrameLayout>
+
+    <ImageButton
+        android:id="@+id/bnav_rg_btn_quit"
+        android:layout_width="48dp"
+        android:layout_height="47dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/wsdk_drawable_common_bg_prj_card_selector"
+        android:gravity="center"
+        android:src="@drawable/wsdk_drawable_rg_ic_quit_guidance"
+        android:visibility="invisible" />
+
+    <!--[复用]真实导航：更多按钮；模拟导航：暂停/开始按钮-->
+    <!-- <ImageButton
+             android:id="@+id/bnav_rg_btn_more"
+             android:layout_width="48dp"
+             android:layout_height="47dp"
+             android:gravity="center"
+             android:visibility="gone"
+             android:layout_alignParentRight="true"
+             android:layout_above="@+id/bnav_rg_bar_layout"
+             android:layout_marginRight="8dp"
+             android:layout_marginBottom="6dp"
+             android:background="@drawable/wsdk_drawable_common_bg_prj_card_selector"
+             android:src="@drawable/wsdk_drawable_rg_ic_more"/>-->
+
+
+    <RelativeLayout
+        android:id="@+id/calorie_animation_layout"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="14dp">
+
+        <LinearLayout
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/walk_calorie_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/wsdk_icon_calorie_bar_bg"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/walk_calorie_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="已消耗"
+                    android:textColor="#333333"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:id="@+id/walk_calorie_iv"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/walk_calorie_times_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="*2"
+                    android:textColor="#333333"
+                    android:textSize="11dp"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/walk_calorie_btn"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/wsdk_icon_calorie_bg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/walk_calorie_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="0"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/walk_calorie_tv_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="大卡"
+                    android:textColor="#ffffff"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--<include-->
+    <!--android:id="@+id/direct_wheel_layout"-->
+    <!--layout="@layout/wsdk_layout_direct_wheel"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_below="@+id/calorie_animation_layout"-->
+    <!--android:visibility="gone" />-->
+
+
+    <RelativeLayout
+        android:id="@+id/bnav_rg_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/wsdk_drawable_bike_btn_bg_normal"
+        android:clickable="true"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:id="@+id/bnav_rg_bar_quit"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/bnav_rg_bar_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/wsdk_drawable_rg_ic_quit_guidance" />
+
+            <TextView
+                android:id="@+id/bnav_rg_bar_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bnav_rg_bar_icon"
+                android:layout_centerHorizontal="true"
+                android:text="退出"
+                android:textColor="#4d4e50"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_toRightOf="@id/bnav_rg_bar_quit"
+            android:background="#d7d8d9"></View>
+
+        <RelativeLayout
+            android:id="@+id/bnav_rg_bar_more_ly"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:paddingRight="10dp"
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/bnav_rg_bar_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/wsdk_drawable_rg_ic_more"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/bnav_rg_bar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:text="查看全览"
+            android:textColor="#3086ff"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/remain_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/bnav_rg_bar_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="#313223"
+            android:textSize="15dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/normal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="72dp"
+        android:visibility="visible">
+
+        <!-- 比例尺 -->
+        <!-- layout_marginLeft="60dp" 是因为整体会隐藏所以设置了个固定的 -->
+        <RelativeLayout
+            android:id="@+id/bnav_rg_map_scale_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/bnav_rg_scale_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/bnav_rg_scale_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="7dp"
+                android:layout_below="@id/bnav_rg_scale_title"
+                android:background="@drawable/wsdk_drawable_rg_ic_scale_indicator"
+                android:paddingTop="-5dp" />
+        </RelativeLayout>
+
+        <!-- 回车位及视图切换按钮  -->
+        <RelativeLayout
+            android:id="@+id/bnav_rg_location_layout"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="9dp"
+            android:background="@drawable/wsdk_drawable_bike_btn_bg_normal">
+
+            <ImageButton
+                android:id="@+id/bnav_rg_btn_location"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_centerInParent="true"
+                android:background="#fff"
+                android:clickable="true"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/wsdk_drawable_rg_ic_walk_bike3d" />
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/ar_entry"
+            android:layout_width="118dp"
+            android:layout_height="118dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="-5dp"
+            android:layout_marginBottom="-13dp"
+            android:src="@drawable/wsdk_ar_entry_bg"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/ar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/wsdk_ar_bottom_bg"
+        android:clickable="true"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/light_view"
+            android:layout_width="118dp"
+            android:layout_height="118dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="-5dp"
+            android:layout_marginBottom="-5dp"
+            android:src="@drawable/wsdk_normal_entry_bg"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/ar_close"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="-3dp"
+            android:src="@drawable/wsdk_drawable_rg_ic_ar_quit_guidance_select" />
+
+        <FrameLayout
+            android:id="@+id/ar_more_npc_btn"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginBottom="-3dp"
+            android:layout_toRightOf="@+id/ar_close">
+            <!--            android:background="@drawable/wsdk_drawable_rg_ic_ar_npc">-->
+
+            <ImageView
+                android:id="@+id/ar_npc_image"
+                android:layout_width="43.5dp"
+                android:layout_height="43.5dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="1.5dp"
+                android:src="@drawable/wsdk_icon_classic"
+                android:visibility="visible" />
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/common_switch_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/divider_line0"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="#DFDFDF" />
+
+        <RelativeLayout
+            android:id="@+id/sound_switch_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_line0"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="语音播报"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/sound_check"
+                android:layout_width="52dp"
+                android:layout_height="31dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/wsdk_checkbox_selector"
+                android:button="@drawable/transparent"
+                android:checked="true" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/divider_line1"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/sound_switch_layout"
+            android:background="#DFDFDF" />
+
+        <RelativeLayout
+            android:id="@+id/pano_switch_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_line1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="全景参照"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/pano_check"
+                android:layout_width="52dp"
+                android:layout_height="31dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/wsdk_checkbox_selector"
+                android:button="@drawable/transparent"
+                android:checked="true" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/divider_line2"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/pano_switch_layout"
+            android:background="#DFDFDF" />
+
+        <RelativeLayout
+            android:id="@+id/treeD_switch_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_line2"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="3D视图"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/threeD_check"
+                android:layout_width="52dp"
+                android:layout_height="31dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/wsdk_checkbox_selector"
+                android:button="@drawable/transparent"
+                android:checked="true" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/divider_line3"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/treeD_switch_layout"
+            android:background="#DFDFDF" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider_line3"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/switch_hide_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="0dp"
+                android:background="#FFFFFF"
+                android:text="关闭"
+                android:textColor="#2B81FF"
+                android:textSize="20dp" />
+            >
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ar_end_pop_layout"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/ar_end_focus_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/wsdk_roundcorner_black_bg"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/end_title"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/wsdk_end_icon" />
+
+                <ImageView
+                    android:id="@+id/divide_line"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_toRightOf="@id/end_title"
+                    android:background="#1f304a" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="0dp"
+                    android:layout_toRightOf="@id/divide_line"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ar_end_poi_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:width="130dp"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="#ffffff"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/ar_end_poi_dis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:maxLines="1"
+                        android:text=""
+                        android:textColor="#ffffff"
+                        android:textSize="12dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ar_end_nofoucus_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/ar_end_left_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="-5dp"
+                    android:src="@drawable/wsdk_ar_end_left_arrow"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/ar_end_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toRightOf="@+id/nofocus_icon"
+                    android:src="@drawable/wsdk_ar_end_right_arrow"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/nofocus_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_toRightOf="@id/ar_end_left_arrow"
+                    android:background="@drawable/wsdk_end_far_icon" />
+
+            </RelativeLayout>
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ar_operated_pop_layout"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ar_operated_pop_image_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true" />
+
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/sensor_adjust_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cc333333"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:id="@+id/sensor_adjust_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/wsdk_anim_sensor_adjust" />
+
+        <TextView
+            android:id="@+id/sensor_adjust_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sensor_adjust_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="如果罗盘不准,请按照图示校正手机方向角"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/sensor_adjust_iv_close"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/sensor_adjust_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:padding="15dp"
+            android:src="@drawable/wsdk_icon_sensor_adjust_close" />
+    </RelativeLayout>
+
+</RelativeLayout>

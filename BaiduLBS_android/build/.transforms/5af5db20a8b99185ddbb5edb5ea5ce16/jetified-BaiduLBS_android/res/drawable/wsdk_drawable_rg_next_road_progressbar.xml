@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2008 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="8dip" />
+             <gradient
+                    android:startColor="#1D1F21"
+                    android:centerColor="#1D1F21"
+                    android:centerY="0.75"
+                    android:endColor="#1D1F21"
+                    android:angle="270"
+            />
+             <solid android:color="#00000000"/>
+<!--             <bitmap
+    			android:src="@drawable/bnav_rg_nextroad_progress"/> -->
+        </shape>
+    </item>
+    
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners
+                    android:bottomLeftRadius="3dp"
+                    android:bottomRightRadius="3dp" />
+                 <gradient
+                        android:startColor="#80ffd300"
+                        android:centerColor="#80ffb600"
+                        android:centerY="0.75"
+                        android:endColor="#a0ffcb00"
+                        android:angle="270"
+                />
+                <solid android:color="#1D1F21"/>
+            </shape>
+        </clip>
+    </item>
+    
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners 
+                    android:bottomLeftRadius="3dp"
+                    android:bottomRightRadius="3dp" />
+                <gradient
+                        android:startColor="#ffffd300"
+                        android:centerColor="#ffffb600"
+                        android:centerY="0.75"
+                        android:endColor="#ffffcb00"
+                        android:angle="270"
+                />
+                <solid android:color="#66c500"/>
+            </shape>
+ <!--            <bitmap
+    			android:src="@drawable/bnav_rg_nextroad_progress"/> -->
+        </clip>
+    </item>
+    
+</layer-list>
+

@@ -1,0 +1,6 @@
+include ':CustomView'
+include ':onsdk_all'
+include ':NaviTts'
+include ':BaiduLBS_android'
+include ':app'
+rootProject.name = "StallX"
