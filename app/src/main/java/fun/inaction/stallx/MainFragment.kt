@@ -3,6 +3,9 @@ package `fun`.inaction.stallx
 import `fun`.inaction.buttongroup.ButtonGroup
 import `fun`.inaction.stallx.databinding.FragmentMainBinding
 import `fun`.inaction.stallx.utils.MapHelper
+import `fun`.inaction.stallx.utils.gone
+import `fun`.inaction.stallx.utils.hide
+import `fun`.inaction.stallx.utils.show
 import android.Manifest
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +13,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.hi.dhl.binding.viewbind
 import com.permissionx.guolindev.PermissionX
 
@@ -26,7 +31,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return binding.root
     }
 
@@ -42,6 +46,7 @@ class MainFragment : Fragment() {
         // 初始化按钮组
         initButtonGroup()
 
+        // ”输入目的地“ 的点击事件
         binding.inputTargetButton.setOnClickListener {
             val action = MainFragmentDirections.actionMainFragmentToSearchFragment(
                 mapHelper.getCurPosition().city,

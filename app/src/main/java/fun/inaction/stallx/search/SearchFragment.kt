@@ -58,6 +58,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         // 返回按钮点击事件
         binding.returnBtn.setOnClickListener { Navigation.findNavController(it).popBackStack() }
+
+        Log.e("tag","2 onViewCreated")
+
     }
 
 

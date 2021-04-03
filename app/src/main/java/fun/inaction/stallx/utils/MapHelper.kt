@@ -15,7 +15,7 @@ import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 
 class MapHelper(
-    private val mapView: MapView,
+    private val mapView: TextureMapView,
     lifecycle: Lifecycle
 ) : LifecycleObserver {
 
@@ -230,7 +230,7 @@ class MapHelper(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onStop() {
-
+        logi(TAG,"onStop")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
