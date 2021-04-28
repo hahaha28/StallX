@@ -4,6 +4,12 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.util.Base64
 import android.view.View
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.ImageViewCompat
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import java.util.regex.Pattern
 
 fun Parcelable.toBase64String():String{
     val parcel = Parcel.obtain()
@@ -31,4 +37,19 @@ fun View.hide(){
 
 fun View.gone(){
     this.visibility = View.GONE
+}
+
+fun String.isPhoneNumber():Boolean{
+    val regular = "\\d{11}"
+    return Pattern.compile(regular).matcher(this).matches()
+}
+
+fun Fragment.appCompatActivity():AppCompatActivity{
+    return requireActivity() as AppCompatActivity
+}
+
+fun ImageView.load(url:String){
+    Glide.with(this)
+        .load(url)
+        .into(this)
 }

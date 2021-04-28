@@ -27,64 +27,28 @@ class MapHelper(
     val map: BaiduMap
         get() = mapView.map
 
-    /**
-     * 当前位置
-     */
-    private var curLocation: BDLocation? = null
+    private var curLocation:BDLocation? = null
 
-    /**
-     * 位置监听
-     */
-    private val locationListener = object : BDAbstractLocationListener() {
-        override fun onReceiveLocation(location: BDLocation?) {
-            location?.let { location ->
-
-                logLocationInfo(location.locType)
-                when (location.locType) {
-                    BDLocation.TypeGpsLocation,
-                    BDLocation.TypeNetWorkLocation,
-                    BDLocation.TypeOffLineLocation,
-                    -> {
-                        // 定位成功
-                        Log.v(TAG,
-                            "onReceiveLocation: 获取到位置信息" +
-                                    "（${location.longitude}，${location.latitude}）" +
-                                    "，精度：${location.radius}"
-                        )
-                        // 显示当前位置指针
-                        val locData = MyLocationData.Builder()
-                            .accuracy(location.radius)
-                            .direction(location.direction)
-                            .latitude(location.latitude)
-                            .longitude(location.longitude)
-                            .build()
-                        mapView.map.setMyLocationData(locData)
-
-                        // 如果是第一次获取位置，就移动到当前位置
-                        if (curLocation == null) {
-                            animateToPosition(location.latitude, location.longitude)
-                        }
-
-                        // 记录定位
-                        curLocation = location
-                    }
-                    else -> {
-                        // 定位失败
-
-                    }
-                }
-
-            }
-            if (location == null) {
-                Log.e(TAG, "onReceiveLocation: location = null")
-            }
+    private val locationListener: (BDLocation)->Unit = {
+        // 第一次定位成功，移动到当前位置
+        if(curLocation == null){
+            curLocation = it
+            toCurPosition()
         }
+        // 显示当前位置指针
+        val locData = MyLocationData.Builder()
+            .accuracy(it.radius)
+            .direction(it.direction)
+            .latitude(it.latitude)
+            .longitude(it.longitude)
+            .build()
+        mapView.map.setMyLocationData(locData)
+
+        locationChangeListener(it)
+        curLocation = it
     }
 
-    /**
-     * 定位客户端
-     */
-    private val locationClient = LocationClient(MyApplication.context)
+    var locationChangeListener: (BDLocation)->Unit = {}
 
 
     init {
@@ -92,42 +56,14 @@ class MapHelper(
         lifecycle.addObserver(this)
         // 开启地图定位图层
         map.isMyLocationEnabled = true
-        // 定位初始化
-        locationClient.registerLocationListener(locationListener)
-        locationClient.locOption = LocationClientOption().apply {
-            // 可选，设置定位模式，默认高精度 LocationMode.Hight_Accuracy：高精度；
-            setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
-            // 设置返回经纬度坐标类型
-            setCoorType("bd09ll")
-            // 设置定位时间间隔
-            setScanSpan(1000)
-//            isOnceLocation = true
-            // 设置使用gps
-            isOpenGps = true
-            // 设置需要获得地址信息
-            setIsNeedAddress(true)
-            // 设置GPS有效时1s一次输出结果
-            isLocationNotify = true
-            // 设置需要POI信息
-//            setIsNeedLocationPoiList(true)
-        }
+        // 监听定位
+        LocationHelper.addLocationListener(locationListener)
+
 
     }
 
-    /**
-     * 开启定位（连续定位）
-     */
-    fun startLocation() {
-        // 开启定位
-        locationClient.start()
-    }
 
-    /**
-     * 停止定位
-     */
-    fun stopLocation() {
-        locationClient.stop()
-    }
+
 
     /**
      * 移动地图到当前位置
@@ -161,38 +97,9 @@ class MapHelper(
         map.animateMapStatus(mapStatusUpdate)
     }
 
-    /**
-     * 获取当前位置
-     */
-    fun getCurPosition(): BDLocation = if (curLocation == null) {
-        BDLocation()
-    } else {
-        curLocation!!
-    }
 
-    /**
-     * 打印定位情况
-     */
-    private fun logLocationInfo(locType: Int) {
-        if (locType == BDLocation.TypeGpsLocation) { // GPS定位结果
-            Log.v(TAG, "onReceiveLocation: GPS定位成功")
-        } else if (locType == BDLocation.TypeNetWorkLocation) { // 网络定位结果
-            Log.v(TAG, "onReceiveLocation: 网络定位成功")
-        } else if (locType == BDLocation.TypeOffLineLocation) { // 离线定位结果
-            Log.v(TAG, "onReceiveLocation: 离线定位成功")
-        } else if (locType == BDLocation.TypeServerError) {
-            Log.e(TAG, "onReceiveLocation: 服务端网络定位失败")
-        } else if (locType == BDLocation.TypeNetWorkException) {
-            Log.e(TAG, "onReceiveLocation: 网络不通导致定位失败，请检查网络是否通畅")
-        } else if (locType == BDLocation.TypeCriteriaException) {
-            Log.e(
-                TAG,
-                "onReceiveLocation: 无法获取有效定位依据导致定位失败，" +
-                        "一般是由于手机的原因，处于飞行模式下一般会造成这种结果，" +
-                        "可以试着重启手机",
-            )
-        }
-    }
+
+
 
     /**
      * 检查GPS是否打开
@@ -202,6 +109,14 @@ class MapHelper(
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
+    /**
+     * 获取当前位置
+     */
+    fun getCurPosition(): BDLocation = if (curLocation == null) {
+        BDLocation()
+    } else {
+        curLocation!!
+    }
 
 
     // Activity或Fragment 生命周期监听函数
@@ -231,12 +146,13 @@ class MapHelper(
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onStop() {
         logi(TAG,"onStop")
+//        onDestroy()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         mapView.onDestroy()
-        locationClient.stop()
+        LocationHelper.removeLocationListener(locationListener)
         map.isMyLocationEnabled = false
         Log.i(TAG, "onDestroy: ")
     }

@@ -29,6 +29,9 @@ android {
         // 导航SDK内部使用了annotationProcessor，需要添加下面代码，防止编译异常
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -52,6 +55,13 @@ android {
             res.srcDirs = [
                     'src/main/res/layout/adapter',
                     'src/main/res/layout/search',
+                    'src/main/res/layout/entry',
+                    'src/main/res/layout/mark',
+                    'src/main/res/layout/nav',
+                    'src/main/res/layout/custom',
+                    'src/main/res/layout/park',
+                    'src/main/res/layout/collection',
+                    'src/main/res/layout/history',
                     'src/main/res/layout',
                     'src/main/res'
             ]
@@ -75,13 +85,30 @@ dependencies {
     implementation 'com.hi-dhl:binding:1.1.2' // 简化ViewBinding库使用
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6' // 简化RecyclerView适配器使用
     implementation 'de.hdodenhof:circleimageview:3.1.0' // 圆角图片
-    implementation 'com.github.bumptech.glide:glide:4.12.0'// Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation project(path: ':network')// Glide
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.github.hahaha28:ButtonGroup:1.0.2' // 按钮组
     implementation project(path: ':CustomView') // 本项目的自定义View
     implementation 'com.tencent:mmkv-static:1.2.7' // MMKV
     implementation 'com.google.code.gson:gson:2.8.6' // GSON
     implementation 'com.noober.background:core:1.6.5' // 无需再写shape
+    implementation 'com.github.cirno-poi:VerifyEditText:1.0.0' // 验证码输入框
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'      // retrofit
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    implementation 'com.kongzue.dialog_v3:dialog:3.2.4' // 对话框
+    implementation 'com.jeremyliao:live-event-bus-x:1.7.3' // LiveEventBus
+    implementation 'com.github.razerdp:BasePopup:2.2.20' // BasePopup
+    implementation "com.github.nekocode:Badge:2.1" // badge
+    implementation 'com.github.donkingliang:ConsecutiveScroller:4.4.1' // 持续滑动布局
+    implementation 'com.qw:coco:1.1.2' // 拍照，相册选择
+    implementation 'com.sackcentury:shinebutton:1.0.0' // 收藏按钮
+
+    // -----------------------
+    // 下拉刷新，上拉加载
+    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.3'      //核心必须依赖
+    implementation  'com.scwang.smart:refresh-header-classics:2.0.3'    //经典刷新头
+    implementation  'com.scwang.smart:refresh-footer-classics:2.0.3'    //经典加载
 
     // ------------------------
     //  百度导航SDK相关

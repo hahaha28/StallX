@@ -1,13 +1,24 @@
 package `fun`.inaction.stallx
 
+import `fun`.inaction.custom.view.ToolbarPlus
+import `fun`.inaction.network.NetworkConfig
+import `fun`.inaction.stallx.utils.UserBaseUtil
+import `fun`.inaction.stallx.utils.loge
+import `fun`.inaction.stallx.utils.showToast
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import com.baidu.mapapi.SDKInitializer
 import com.baidu.navisdk.adapter.BaiduNaviManagerFactory
 import com.baidu.navisdk.adapter.IBaiduNaviManager
 import com.baidu.navisdk.adapter.struct.BNTTsInitConfig
 import com.baidu.navisdk.adapter.struct.BNaviInitConfig
+import com.jeremyliao.liveeventbus.LiveEventBus
+import com.kongzue.dialog.util.DialogSettings
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.mmkv.MMKV
 
 class MyApplication : Application() {
@@ -27,6 +38,39 @@ class MyApplication : Application() {
 
         initNavi()
 
+        configNetwork()
+
+        ToolbarPlus.onNavigationOnClickListener = {
+            it.findNavController().popBackStack()
+        }
+
+        DialogSettings.style = DialogSettings.STYLE.STYLE_MIUI
+
+        configSmartRefreshLayout()
+
+        LiveEventBus.config().autoClear(true)
+    }
+
+    private fun configSmartRefreshLayout(){
+        SmartRefreshLayout.setDefaultRefreshInitializer { context, layout ->
+            // 不满一页时不上拉加载
+            layout.setEnableLoadMoreWhenContentNotFull(false)
+            // 越界拖动
+            layout.setEnableOverScrollDrag(true)
+        }
+    }
+
+    /**
+     * 配置网络
+     */
+    private fun configNetwork(){
+        NetworkConfig.onError = {code,msg ,result ->
+            showToast("Error! code:${code},msg:${msg}",Toast.LENGTH_LONG)
+            loge("Network","错误${code},${msg},${result}")
+        }
+        NetworkConfig.getUserID = {
+            UserBaseUtil.getUserID()?:""
+        }
     }
 
     private fun initNavi() {

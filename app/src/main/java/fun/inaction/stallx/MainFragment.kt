@@ -2,10 +2,7 @@ package `fun`.inaction.stallx
 
 import `fun`.inaction.buttongroup.ButtonGroup
 import `fun`.inaction.stallx.databinding.FragmentMainBinding
-import `fun`.inaction.stallx.utils.MapHelper
-import `fun`.inaction.stallx.utils.gone
-import `fun`.inaction.stallx.utils.hide
-import `fun`.inaction.stallx.utils.show
+import `fun`.inaction.stallx.utils.*
 import android.Manifest
 import android.os.Bundle
 import android.util.Log
@@ -15,42 +12,47 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.hi.dhl.binding.viewbind
 import com.permissionx.guolindev.PermissionX
 
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(R.layout.fragment_main) {
 
     val binding by viewbind<FragmentMainBinding>()
 
     private lateinit var mapHelper: MapHelper
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mapHelper = MapHelper(binding.mapView, viewLifecycleOwner.lifecycle)
 
-        mapHelper = MapHelper(binding.mapView, lifecycle)
         binding.mapView.showZoomControls(false)
         requestPermission {
-            mapHelper.startLocation()
+            LocationHelper.start()
         }
 
         // 初始化按钮组
         initButtonGroup()
 
+        // 头像点击事件
+        binding.avatarImage.setOnClickListener {
+            UserBaseUtil.logout()
+
+        }
+
         // ”输入目的地“ 的点击事件
         binding.inputTargetButton.setOnClickListener {
             val action = MainFragmentDirections.actionMainFragmentToSearchFragment(
-                mapHelper.getCurPosition().city,
-                ""
+                mapHelper.getCurPosition()?.city,
+                "北京"
             )
             it.findNavController().navigate(action)
         }
@@ -76,6 +78,21 @@ class MainFragment : Fragment() {
 
                 )
         )
+        binding.buttonGroup.setOnItemClickListener {
+            when(it){
+                0 -> findNavController().navigate(R.id.action_mainFragment_to_collectionListFragment)
+                1 -> findNavController().navigate(R.id.action_mainFragment_to_markListFragment)
+                2 -> findNavController().navigate(R.id.action_mainFragment_to_parkHistoryFragment)
+                3 -> {
+                    LocationHelper.curLocation?.let {
+                        findNavController().navigate(MainFragmentDirections.actionMainFragmentToParkSearchResultFragment(
+                            it.city,it.longitude.toString(),it.latitude.toString()
+                        ))
+                    }
+                }
+                4 -> findNavController().navigate(R.id.action_mainFragment_to_addParkFragment)
+            }
+        }
     }
 
     /**

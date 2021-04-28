@@ -14,6 +14,21 @@
             app:destination="@id/searchFragment"
             app:enterAnim="@anim/slide_bottom_in"
             app:popEnterAnim="@anim/slide_bottom_out" />
+        <action
+            android:id="@+id/action_mainFragment_to_markListFragment"
+            app:destination="@id/markListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addParkFragment"
+            app:destination="@id/addParkFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_collectionListFragment"
+            app:destination="@id/collectionListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_parkHistoryFragment"
+            app:destination="@id/parkHistoryFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_parkSearchResultFragment"
+            app:destination="@id/parkSearchResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -26,6 +41,91 @@
             android:defaultValue="北京" />
         <argument
             android:name="defaultKey"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchFragment_to_parkSearchResultFragment"
+            app:destination="@id/parkSearchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/markListFragment"
+        android:name="fun.inaction.stallx.mark.MarkListFragment"
+        android:label="MarkListFragment" >
+        <action
+            android:id="@+id/action_markListFragment_to_addMarkFragment"
+            app:destination="@id/addMarkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMarkFragment"
+        android:name="fun.inaction.stallx.mark.AddMarkFragment"
+        android:label="AddMarkFragment" />
+    <fragment
+        android:id="@+id/addParkFragment"
+        android:name="fun.inaction.stallx.park.AddParkFragment"
+        android:label="AddParkFragment" >
+        <action
+            android:id="@+id/action_addParkFragment_to_mapPlaceChooseFragment"
+            app:destination="@id/mapPlaceChooseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapPlaceChooseFragment"
+        android:name="fun.inaction.stallx.park.MapPlaceChooseFragment"
+        android:label="MapPlaceChooseFragment" />
+    <fragment
+        android:id="@+id/parkSearchResultFragment"
+        android:name="fun.inaction.stallx.park.ParkSearchResultFragment"
+        android:label="ParkSearchResultFragment" >
+        <argument
+            android:name="city"
+            app:argType="string" />
+        <argument
+            android:name="longitude"
+            app:argType="string" />
+        <argument
+            android:name="latitude"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_parkSearchResultFragment_to_parkDetailFragment"
+            app:destination="@id/parkDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parkDetailFragment"
+        android:name="fun.inaction.stallx.park.ParkDetailFragment"
+        android:label="ParkDetailFragment" >
+        <argument
+            android:name="park"
+            app:argType="fun.inaction.network.bean.Park" />
+        <argument
+            android:name="targetLongitude"
+            app:argType="string" />
+        <argument
+            android:name="targetLatitude"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectionListFragment"
+        android:name="fun.inaction.stallx.collection.CollectionListFragment"
+        android:label="CollectionListFragment" >
+        <action
+            android:id="@+id/action_collectionListFragment_to_parkDetailFragment"
+            app:destination="@id/parkDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parkHistoryFragment"
+        android:name="fun.inaction.stallx.history.ParkHistoryFragment"
+        android:label="ParkHistoryFragment" >
+        <action
+            android:id="@+id/action_parkHistoryFragment_to_parkDetailFragment"
+            app:destination="@id/parkDetailFragment" />
+        <action
+            android:id="@+id/action_parkHistoryFragment_to_parkCommentFragment"
+            app:destination="@id/parkCommentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/parkCommentFragment"
+        android:name="fun.inaction.stallx.park.ParkCommentFragment"
+        android:label="ParkCommentFragment" >
+        <argument
+            android:name="parkID"
             app:argType="string" />
     </fragment>
 </navigation>

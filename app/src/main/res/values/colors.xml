@@ -20,5 +20,6 @@
     <!--    点击波纹的颜色-->
     <color name="colorRipple">#A0A0A0</color>
 
+    <color name="colorCollected">#FFD600</color>
 
 </resources>

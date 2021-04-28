@@ -3,11 +3,13 @@ package `fun`.inaction.stallx.utils
 import `fun`.inaction.stallx.MyApplication
 import android.content.Intent
 import android.os.Parcelable
+import android.util.Base64
 import com.baidu.mapapi.search.sug.SuggestionResult
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.tencent.mmkv.MMKV
 import java.io.*
+import java.util.*
 
 object DiskCacheUtil {
 
@@ -27,6 +29,14 @@ object DiskCacheUtil {
         val temp = mutableListOf<String>()
         data.forEach {
             temp.add(it.toBase64String())
+        }
+        mmkv?.encode(key,gson.toJson(temp))
+    }
+
+    fun writeSerializableList(key:String,data:List<Serializable>){
+        val temp = mutableListOf<String>()
+        data.forEach {
+            temp.add(it.toBase64Str())
         }
         mmkv?.encode(key,gson.toJson(temp))
     }
@@ -57,6 +67,18 @@ object DiskCacheUtil {
         return null
     }
 
+    fun <T:Serializable> getSerializableList(key:String):List<T>?{
+        getString(key)?.let {
+            val result = mutableListOf<T>()
+            val stringList = gson.fromJson<List<String>>(it, object : TypeToken<List<String>>(){}.type)
+            stringList.forEach { str ->
+                result.add(str.toSerializableObj())
+            }
+            return result
+        }
+        return null
+    }
+
     fun  <T:Parcelable> getParcelableList(key: String,creator:Parcelable.Creator<T>):List<T>?{
         getString(key)?.let {
             val result = mutableListOf<T>()
@@ -69,6 +91,31 @@ object DiskCacheUtil {
         return null
     }
 
+    fun Serializable.toBytes():ByteArray{
+        val bos = ByteArrayOutputStream()
+        val oos = ObjectOutputStream(bos)
+        oos.writeObject(this)
+        val bytes = bos.toByteArray()
+        oos.close()
+        bos.close()
+        return bytes
+    }
 
+    fun <T> ByteArray.toSerializableObj():T{
+        val bais = ByteArrayInputStream(this)
+        val ois = ObjectInputStream(bais)
+        val obj = ois.readObject() as T
+        ois.close()
+        bais.close()
+        return obj
+    }
+
+    fun Serializable.toBase64Str():String{
+        return Base64.encodeToString(this.toBytes(),Base64.DEFAULT)
+    }
+
+    fun <T> String.toSerializableObj():T{
+        return Base64.decode(this,Base64.DEFAULT).toSerializableObj<T>()
+    }
 
 }
